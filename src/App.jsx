@@ -44,7 +44,7 @@ export default function App() {
     const newNote = {
       id: notes.length + 1,
       title: title,
-      noteContent: noteContent,
+      content: noteContent,
     }
 
     setNotes([newNote, ...notes])
@@ -88,6 +88,14 @@ export default function App() {
     setSelectedNote(null)
   }
 
+  const handleDelete = (e, noteId) => {
+    e.stopPropagation()
+
+    const updatedNotesList = notes.filter((note) => note.id !== noteId)
+
+    setNotes(updatedNotesList)
+  }
+
   return (
     <div className="main-container">
       <form
@@ -129,7 +137,7 @@ export default function App() {
             onClick={() => handleNoteClick(note)}
           >
             <div className="note-header">
-              <button>Delete</button>
+              <button onClick={(e) => handleDelete(e, note.id)}>Delete</button>
             </div>
             <h2>{note.title}</h2>
             <p>{note.content}</p>
