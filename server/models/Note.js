@@ -1,3 +1,4 @@
+const mongoose = require("mongoose")
 const { Schema, Types } = require("mongoose")
 
 const noteSchema = new Schema(
@@ -29,4 +30,6 @@ const noteSchema = new Schema(
   }
 )
 
-module.exports = noteSchema
+const Note = mongoose.model("Note", noteSchema)
+
+module.exports = Note

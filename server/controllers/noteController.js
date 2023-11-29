@@ -5,14 +5,12 @@ module.exports = {
     Note.find()
       .then((notes) => res.json(notes))
       .catch((err) => res.status(500).json(err))
-    console.log(notes)
   },
-
-  //   createNote(req, res) {
-  //     Note.create(req.body)
-  //       .then((dbNoteData) => res.json(dbNoteData))
-  //       .catch((err) => res.status(500).json(err))
-  //   },
+  createNote(req, res) {
+    Note.create(req.body)
+      .then((noteData) => res.json(noteData))
+      .catch((err) => res.status(500).json(err))
+  },
   //   updateNote(req, res) {
   //     Note.findOneAndUpdate(
   //       { _id: req.params.noteId },
