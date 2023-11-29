@@ -5,7 +5,9 @@ module.exports = {
     Note.find()
       .then((notes) => res.json(notes))
       .catch((err) => res.status(500).json(err))
+    console.log(notes)
   },
+
   //   createNote(req, res) {
   //     Note.create(req.body)
   //       .then((dbNoteData) => res.json(dbNoteData))
