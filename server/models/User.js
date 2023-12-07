@@ -2,7 +2,6 @@ const mongoose = require("mongoose")
 
 const { Schema } = mongoose
 const bcrypt = require("bcrypt")
-const Note = require("./Note")
 
 const userSchema = new Schema({
   email: {
@@ -15,7 +14,12 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  notes: [Note.schema],
+  notes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Note",
+    },
+  ],
 })
 
 userSchema.pre("save", async function (next) {

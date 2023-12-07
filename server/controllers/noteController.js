@@ -17,8 +17,24 @@ module.exports = {
   },
   createNote(req, res) {
     Note.create(req.body)
-      .then((noteData) => res.json(noteData))
-      .catch((err) => res.status(500).json(err))
+      .then((note) => {
+        return User.findOneAndUpdate(
+          { _id: req.body.userId },
+          { $addToSet: { notes: note._id } },
+          { new: true }
+        )
+      })
+      .then((user) =>
+        !user
+          ? res
+              .status(404)
+              .json({ message: "Note created, however no user with this ID!" })
+          : res.json("Note successfully created!")
+      )
+      .catch((err) => {
+        console.error(err)
+        res.status(500).json(err)
+      })
   },
   updateNote(req, res) {
     Note.findOneAndUpdate(
