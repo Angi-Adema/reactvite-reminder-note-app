@@ -6,6 +6,17 @@ module.exports = {
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err))
   },
+  getUserNotes(req, res) {
+    User.findById(req.params.userId)
+      .populate("notes")
+      .then((user) => {
+        console.log(user)
+        return !user
+          ? res.status(404).json({ message: "No user with this ID!" })
+          : res.json(user.notes)
+      })
+      .catch((err) => res.status(500).json(err))
+  },
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select("-__v")
