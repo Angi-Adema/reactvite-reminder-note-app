@@ -6,6 +6,15 @@ module.exports = {
       .then((notes) => res.json(notes))
       .catch((err) => res.status(500).json(err))
   },
+  getSingleNote(req, res) {
+    Note.findOne({ _id: req.params.noteId })
+      .then((note) =>
+        !note
+          ? res.status(404).json({ message: "No not with this ID!" })
+          : res.json(note)
+      )
+      .catch((err) => res.status(500).json(err))
+  },
   createNote(req, res) {
     Note.create(req.body)
       .then((noteData) => res.json(noteData))
