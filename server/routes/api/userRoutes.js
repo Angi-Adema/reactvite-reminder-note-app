@@ -10,6 +10,8 @@ const {
 
 router.route("/").get(getUsers).post(createUser)
 
-router.route("/:userId").get(getSingleUser).get(getUserNotes).delete(deleteUser)
+router.route("/:userId").get(getUserNotes)
+
+router.route("/:userId").get(getSingleUser).delete(deleteUser)
 
 module.exports = router

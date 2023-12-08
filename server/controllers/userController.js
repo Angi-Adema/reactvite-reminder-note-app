@@ -10,10 +10,10 @@ module.exports = {
     User.findById(req.params.userId)
       .populate("notes")
       .then((user) => {
-        console.log(user)
-        return !user
-          ? res.status(404).json({ message: "No user with this ID!" })
-          : res.json(user.notes)
+        if (!user) {
+          return res.status(404).json({ message: "No user with this ID!" })
+        }
+        res.json(user.notes)
       })
       .catch((err) => res.status(500).json(err))
   },
