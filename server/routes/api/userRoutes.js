@@ -10,7 +10,7 @@ const {
 
 router.route("/").get(getUsers).post(createUser)
 
-router.route("/:userId").get(getUserNotes)
+router.route("/:userId/notes").get(getUserNotes)
 
 router.route("/:userId").get(getSingleUser).delete(deleteUser)
 

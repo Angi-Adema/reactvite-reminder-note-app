@@ -57,7 +57,18 @@ module.exports = {
       .then((note) =>
         !note
           ? res.status(404).json({ message: "No note with this ID!" })
-          : res.json({ message: "Note deleted!" })
+          : User.findOneAndUpdate(
+              { notes: req.params.noteId },
+              { $pull: { notes: req.params.noteId } },
+              { new: true }
+            )
+      )
+      .then((user) =>
+        !user
+          ? res
+              .status(404)
+              .json({ message: "Note created, however no user with this ID!" })
+          : res.json({ message: "Note successfully deleted!" })
       )
       .catch((err) => res.status(500).json(err))
   },
