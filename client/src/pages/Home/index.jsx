@@ -1,5 +1,6 @@
 import React from "react"
 import Card from "react-bootstrap/Card"
+import { Link } from "react-router-dom"
 
 export default function Home() {
   return (
@@ -35,7 +36,9 @@ export default function Home() {
           </Card.Body>
 
           <Card.Body>
-            <Card.Link href="#">Sign Up!</Card.Link>
+            <Card.Link as={Link} to="/Signup">
+              Sign Up!
+            </Card.Link>
           </Card.Body>
         </Card>
       </div>
