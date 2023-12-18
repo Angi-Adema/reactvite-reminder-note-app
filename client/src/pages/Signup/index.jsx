@@ -51,7 +51,12 @@ export default function Signup() {
           <Button
             variant="primary"
             type="submit"
-            style={{ width: "30%", backgroundColor: "#7f4bd2", border: "none" }}
+            style={{
+              width: "30%",
+              minWidth: "100px",
+              backgroundColor: "#7f4bd2",
+              border: "none",
+            }}
           >
             Submit
           </Button>
