@@ -2,7 +2,7 @@ import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 
 export default function Navigation() {
-  const boolean = false
+  const loggedIn = false
 
   return (
     <Navbar
@@ -29,7 +29,7 @@ export default function Navigation() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>
             <Nav.Link href="/">Home</Nav.Link>
-            {boolean ? (
+            {loggedIn ? (
               <Nav.Link href="#">Logout</Nav.Link>
             ) : (
               <Nav.Link href="/login">Login</Nav.Link>

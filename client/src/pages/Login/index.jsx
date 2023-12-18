@@ -1,6 +1,7 @@
 import React from "react"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
+import { Link } from "react-router-dom"
 
 export default function Login() {
   return (
@@ -66,7 +67,7 @@ export default function Login() {
           }}
         >
           <p>
-            Not a Member? Click <span href="/Signup">HERE</span> to Signup!
+            Not a Member? Click <Link to="/Signup">HERE</Link> to Sign Up!
           </p>
         </div>
       </div>
