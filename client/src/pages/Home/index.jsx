@@ -1,11 +1,45 @@
 import React from "react"
+import Card from "react-bootstrap/Card"
+import ListGroup from "react-bootstrap/ListGroup"
 
 export default function Home() {
   return (
     <>
-      <h1>Hi</h1>
-      <h1>Hi again</h1>
-      <div>This is the Home page</div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Card
+          style={{
+            width: "30%",
+            marginTop: "5rem",
+            border: "solid black 2px",
+            borderRadius: "6px",
+          }}
+        >
+          <Card.Img variant="top" src="/stickyNotes.jpg" />
+          <Card.Body>
+            <Card.Title style={{ display: "flex", justifyContent: "center" }}>
+              The Handy Sticky Note App!
+            </Card.Title>
+            <Card.Text>
+              Tired of having lots of sticky notes all around your computer?
+              Have you lost an important sticky note that then caused you to
+              miss an important event or deadline? Problem solved with this
+              sticky notes app! Just simply create a login and write all the
+              notes you need! They will be kept safely here in the app so you
+              never miss an important note again!
+            </Card.Text>
+          </Card.Body>
+
+          <Card.Body>
+            <Card.Link href="#">Sign Up!</Card.Link>
+          </Card.Body>
+        </Card>
+      </div>
     </>
   )
 }
