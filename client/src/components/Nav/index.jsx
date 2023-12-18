@@ -2,7 +2,7 @@ import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 
 export default function Navigation() {
-  const boolean = true
+  const boolean = false
 
   return (
     <Navbar
