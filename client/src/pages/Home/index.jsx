@@ -1,6 +1,7 @@
 import React from "react"
 import Card from "react-bootstrap/Card"
 import { Link } from "react-router-dom"
+import Auth from "../../utils/auth"
 
 export default function Home() {
   return (
@@ -36,9 +37,15 @@ export default function Home() {
           </Card.Body>
 
           <Card.Body>
-            <Card.Link as={Link} to="/Signup">
-              Sign Up!
-            </Card.Link>
+            {Auth.loggedIn() ? (
+              <Card.Link as={Link} to="/notes">
+                See My Notes!
+              </Card.Link>
+            ) : (
+              <Card.Link as={Link} to="/Signup">
+                Sign Up!
+              </Card.Link>
+            )}
           </Card.Body>
         </Card>
       </div>

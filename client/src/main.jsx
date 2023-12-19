@@ -10,6 +10,7 @@ import Signup from "./pages/Signup"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./styles.css"
 import Home from "./pages/Home/index.jsx"
+import Auth from "./utils/auth.js"
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/notes",
-        element: <Notes />,
+        element: Auth.loggedIn() ? <Notes /> : <Login />,
       },
     ],
   },

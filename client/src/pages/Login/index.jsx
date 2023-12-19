@@ -1,9 +1,35 @@
-import React from "react"
+import React, { useState } from "react"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import { Link } from "react-router-dom"
+import { loginUser } from "../../utils/API"
+import Auth from "../../utils/auth"
 
 export default function Login() {
+  const [formState, setFormState] = useState({ email: "", password: "" })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormState({ ...formState, [name]: value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await loginUser(formState)
+
+      if (!response.ok) {
+        console.log("error logging in")
+      }
+
+      const { token, user } = await response.json()
+      console.log(user)
+      Auth.login(token)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <>
       <div
@@ -27,6 +53,7 @@ export default function Login() {
             backgroundColor: "#D1BDEF",
             padding: "12px",
           }}
+          onSubmit={handleSubmit}
         >
           <div
             style={{
@@ -42,12 +69,24 @@ export default function Login() {
             <Form.Label style={{ fontWeight: "bold" }}>
               Email address
             </Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              name="email"
+              value={formState.email}
+              onChange={handleChange}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label style={{ fontWeight: "bold" }}>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={formState.password}
+              onChange={handleChange}
+            />
           </Form.Group>
           <Button
             variant="primary"

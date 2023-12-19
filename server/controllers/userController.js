@@ -1,4 +1,5 @@
 const { User, Note } = require("../models")
+const { signToken } = require("../utils/auth")
 
 module.exports = {
   getUsers(req, res) {
@@ -26,9 +27,33 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err))
   },
+  login(req, res) {
+    User.findOne({ email: req.body.email })
+      .then((res) => {
+        if (!res) {
+          return res.status(400).json({ message: "user not found" })
+        }
+        return res.isCorrectPassword(req.body.password)
+      })
+      .then((user) => {
+        if (!user) {
+          return res.status(400).json({ message: "user not found" })
+        }
+
+        const token = signToken(user)
+        res.json({ user, token })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  },
   createUser(req, res) {
     User.create(req.body)
-      .then((user) => res.json(user))
+      .then((user) => {
+        const token = signToken(user)
+        res.json({ user, token })
+        console.log({ user, token })
+      })
       .catch((err) => res.status(500).json(err))
   },
   deleteUser(req, res) {
