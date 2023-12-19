@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { getAllNotes, deleteNote, addNote, editNote } from "../../utils/API"
 
 export default function Notes() {
-  const [title, setTitle] = useState("")
   const [noteContent, setNoteContent] = useState({
     noteTitle: "",
     noteBody: "",
@@ -96,7 +95,10 @@ export default function Notes() {
     }
   }
   return (
-    <div className="main-container">
+    <div
+      className="main-container"
+      style={{ marginLeft: "1rem", marginTop: "-3rem" }}
+    >
       <form
         className="form"
         onSubmit={(e) =>
@@ -129,6 +131,12 @@ export default function Notes() {
         ) : (
           <button type="submit">Save Note</button>
         )}
+        <p>
+          <h7>
+            *To edit a note just click on the note and make changes in the
+            editor!
+          </h7>
+        </p>
       </form>
       <div className="notes-grid">
         {notes?.map((note, i) => (
@@ -139,7 +147,6 @@ export default function Notes() {
           >
             <div className="note-header">
               <button onClick={(e) => handleDelete(note._id)}>Delete</button>
-              {/* <button onClick={() => handleNoteClick(note)}>Edit</button> */}
             </div>
             <h2>{note.noteTitle}</h2>
             <p>{note.noteBody}</p>
