@@ -16,7 +16,6 @@ export default function Home() {
         <Card
           style={{
             width: "30%",
-            marginTop: "5rem",
             border: "solid black 2px",
             borderRadius: "6px",
           }}

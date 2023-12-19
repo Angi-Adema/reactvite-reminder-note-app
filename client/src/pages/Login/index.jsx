@@ -19,7 +19,7 @@ export default function Login() {
       const response = await loginUser(formState)
 
       if (!response.ok) {
-        console.log("error logging in")
+        console.log("Error logging in!")
       }
 
       const { token, user } = await response.json()
@@ -46,7 +46,6 @@ export default function Login() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            marginTop: "5rem",
             border: "solid black 2px",
             borderRadius: "6px",
             width: "22%",

@@ -49,7 +49,6 @@ export default function Signup() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            marginTop: "5rem",
             border: "solid black 2px",
             borderRadius: "6px",
             width: "22%",
@@ -127,9 +126,19 @@ export default function Signup() {
             Submit
           </Button>
         </Form>
-        <p>
-          Already a Member? Click <Link to="/login">HERE</Link> to Login!
-        </p>
+        <div
+          style={{
+            margin: "3px",
+            fontSize: "18px",
+            fontWeight: "bold",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <p>
+            Already a Member? Click <Link to="/login">HERE</Link> to Login!
+          </p>
+        </div>
       </div>
     </>
   )

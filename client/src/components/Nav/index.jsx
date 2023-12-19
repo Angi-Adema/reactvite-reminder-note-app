@@ -10,15 +10,11 @@ export default function Navigation() {
       expand="lg"
       className="bg-body-tertiary"
       style={{
-        // position: "fixed",
-        // top: "0",
-        // left: "0",
-        // width: "100%",
         display: "flex",
         justifyContent: "space-between",
         paddingRight: "1rem",
         paddingLeft: "1rem",
-        marginBottom: "6px",
+        marginBottom: "5rem",
       }}
     >
       <div>
