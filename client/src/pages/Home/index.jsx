@@ -18,6 +18,7 @@ export default function Home() {
             width: "30%",
             border: "solid black 2px",
             borderRadius: "6px",
+            boxShadow: "0px 0px 20px black",
           }}
         >
           <Card.Img variant="top" src="/stickyNotes.jpg" />

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-
 import { getAllNotes, deleteNote, addNote, editNote } from "../../utils/API"
 
 export default function Notes() {

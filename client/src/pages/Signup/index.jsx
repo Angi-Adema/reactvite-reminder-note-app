@@ -54,6 +54,7 @@ export default function Signup() {
             width: "22%",
             backgroundColor: "#D1BDEF",
             padding: "12px",
+            boxShadow: "0px 0px 20px black",
           }}
           onSubmit={handleSubmit}
         >
