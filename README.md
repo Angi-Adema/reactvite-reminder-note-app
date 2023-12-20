@@ -50,6 +50,8 @@ GitHub: https://github.com/Angi-Adema/reactvite-reminder-note-app
 
 ## Deployed Site
 
+https://reminder-notes-b55040377751.herokuapp.com/
+
 ## Future Development
 
 - Would like to make it so that different color sticky notes can be used to color code different tasks or reminders.
