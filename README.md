@@ -21,3 +21,37 @@ This application was created and designed to help organize sticky note reminders
 ![Notes-Page-Screenshot](./client/public/notesPageSS.png)
 
 ## Technology
+
+- HTML / CSS (JSX)
+- JavaScript
+- Node.js
+- Express.js
+- React Vite
+- React Bootstrap
+- Google Fonts
+- Heroku
+
+## Author
+
+Angi Adema
+Email: angi.adema@gmail.com
+LinkedIn: https://www.linkedin.com/in/angi-adema-169b6925b/
+
+## Repo Link
+
+GitHub: https://github.com/Angi-Adema/reactvite-reminder-note-app
+
+## Deploy Locally
+
+1. Clone the file from GitHub.
+2. Run "npm i" to install packages.
+3. Run "npm run dev" to start front and back servers.
+4. Visit localhost:5173.
+
+## Deployed Site
+
+## Future Development
+
+- Would like to make it so that different color sticky notes can be used to color code different tasks or reminders.
+- Would like to add a password confirmation field so that when the user enters a password, they also have to confirm the password entered to eliminate errors entering only one password.
+- Possibly add a calendar to the functionality to manage deadlines for some of the reminder notes.
