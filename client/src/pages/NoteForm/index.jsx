@@ -131,12 +131,12 @@ export default function Notes() {
         ) : (
           <button type="submit">Save Note</button>
         )}
-        <p>
-          <h7>
+        <div style={{ fontSize: "15px" }}>
+          <p>
             *To edit a note just click on the note and make changes in the
             editor!
-          </h7>
-        </p>
+          </p>
+        </div>
       </form>
       <div className="notes-grid">
         {notes?.map((note, i) => (
