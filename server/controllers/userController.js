@@ -8,6 +8,11 @@ module.exports = {
       .catch((err) => res.status(500).json(err))
   },
   getUserNotes(req, res) {
+    // const userId = req.user.id
+
+    // if (req.params.userId !== userId) {
+    //   return res.status(404).json({ message: "Please login to view notes!" })
+    // }
     User.findById(req.params.userId)
       .populate("notes")
       .then((user) =>
