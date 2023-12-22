@@ -8,12 +8,6 @@ module.exports = {
       .catch((err) => res.status(500).json(err))
   },
   async getUserNotes({ user = null, params }, res) {
-    // const userId = req.user.id
-
-    // if (req.params.userId !== userId) {
-    //   return res.status(404).json({ message: "Please login to view notes!" })
-    // }
-
     const founduser = await User.findOne({
       _id: user ? user._id : params.id,
     }).populate("notes")
@@ -23,13 +17,6 @@ module.exports = {
     }
 
     res.json(founduser)
-
-    // .then((user) =>
-    //   !user
-    //     ? res.status(404).json({ message: "No user with this ID!" })
-    //     : res.json(user.notes)
-    // )
-    // .catch((err) => res.status(500).json(err))
   },
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
@@ -45,12 +32,16 @@ module.exports = {
     User.findOne({ email: req.body.email })
       .then((res) => {
         if (!res) {
-          return res.status(400).json({ message: "user not found" })
+          return res
+            .status(400)
+            .json({ message: "Incorrect username or password!" })
         }
         const passwordCheck = res.isCorrectPassword(req.body.password)
 
         if (!passwordCheck) {
-          return res.status(400).json({ message: "user not found" })
+          return res
+            .status(400)
+            .json({ message: "Incorrect username or password!" })
         }
         return res
       })

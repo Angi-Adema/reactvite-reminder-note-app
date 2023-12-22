@@ -11,8 +11,6 @@ export default function Notes() {
   const [userData, setUserData] = useState({})
   const [savedId, setSavedId] = useState("")
 
-  const dataLength = Object.keys(userData).length
-
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -53,7 +51,7 @@ export default function Notes() {
       const response = await addNote(noteContent, token)
 
       if (!response.ok) {
-        throw new Error("something wrong")
+        throw new Error("Error occured submitting the note.")
       }
 
       setNoteContent({
@@ -81,7 +79,7 @@ export default function Notes() {
       const response = await editNote(savedId, noteContent)
 
       if (!response.ok) {
-        throw new Error("something wrong")
+        throw new Error("Error occured submitting updated note.")
       }
 
       setSelectedNote(false)

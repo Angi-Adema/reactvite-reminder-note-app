@@ -1,6 +1,6 @@
 // NOTES APIS
 export const getAllNotes = () => {
-  return fetch("/api/notes", {
+  return fetch(`/api/notes`, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -17,7 +17,7 @@ export const deleteNote = (noteId) => {
 }
 
 export const addNote = (data, token) => {
-  return fetch("/api/notes", {
+  return fetch(`/api/notes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export const addUser = (data) => {
 }
 
 export const getUser = (token) => {
-  return fetch("/api/users/user", {
+  return fetch(`/api/users/user`, {
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,

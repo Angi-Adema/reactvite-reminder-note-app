@@ -10,7 +10,7 @@ module.exports = {
     Note.findOne({ _id: req.params.noteId })
       .then((note) =>
         !note
-          ? res.status(404).json({ message: "No not with this ID!" })
+          ? res.status(404).json({ message: "No note with this ID!" })
           : res.json(note)
       )
       .catch((err) => res.status(500).json(err))
