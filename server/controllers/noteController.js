@@ -15,11 +15,11 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err))
   },
-  createNote(req, res) {
-    Note.create(req.body)
+  createNote({ user, body }, res) {
+    Note.create(body)
       .then((note) => {
         return User.findOneAndUpdate(
-          { _id: req.body.userId },
+          { _id: user._id },
           { $addToSet: { notes: note._id } },
           { new: true }
         )

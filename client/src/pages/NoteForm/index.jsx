@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { getAllNotes, deleteNote, addNote, editNote } from "../../utils/API"
+import { getUser, deleteNote, addNote, editNote } from "../../utils/API"
+import Auth from "../../utils/auth"
 
 export default function Notes() {
   const [noteContent, setNoteContent] = useState({
@@ -7,20 +8,32 @@ export default function Notes() {
     noteBody: "",
   })
   const [selectedNote, setSelectedNote] = useState(false)
-  const [notes, setNotes] = useState([])
+  const [userData, setUserData] = useState({})
   const [savedId, setSavedId] = useState("")
 
+  const dataLength = Object.keys(userData).length
+
   useEffect(() => {
-    const noteData = async () => {
-      const response = await getAllNotes()
+    const getUserData = async () => {
+      try {
+        const token = Auth.loggedIn() ? Auth.getToken() : null
 
-      const data = await response.json()
+        if (!token) {
+          return false
+        }
 
-      setNotes(data)
+        const response = await getUser(token)
+
+        const data = await response.json()
+
+        setUserData(data)
+      } catch (error) {
+        console.log(error)
+      }
     }
 
-    noteData()
-  }, [notes])
+    getUserData()
+  }, [userData.notes])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -30,8 +43,15 @@ export default function Notes() {
   const handleSubmitNote = async (e) => {
     e.preventDefault()
 
+    const token = Auth.loggedIn() ? Auth.getToken() : null
+
+    if (!token) {
+      return false
+    }
+
     try {
-      const response = await addNote(noteContent)
+      const response = await addNote(noteContent, token)
+
       if (!response.ok) {
         throw new Error("something wrong")
       }
@@ -139,7 +159,7 @@ export default function Notes() {
         </div>
       </form>
       <div className="notes-grid">
-        {notes?.map((note, i) => (
+        {userData.notes?.map((note, i) => (
           <div
             key={i}
             className="note-item"

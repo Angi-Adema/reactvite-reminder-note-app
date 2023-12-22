@@ -16,11 +16,12 @@ export const deleteNote = (noteId) => {
   })
 }
 
-export const addNote = (data) => {
+export const addNote = (data, token) => {
   return fetch("/api/notes", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(data),
   })
@@ -55,5 +56,14 @@ export const addUser = (data) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
+  })
+}
+
+export const getUser = (token) => {
+  return fetch("/api/users/user", {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
   })
 }

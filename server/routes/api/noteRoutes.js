@@ -1,4 +1,5 @@
 const router = require("express").Router()
+const { authMiddleware } = require("../../utils/auth")
 
 const {
   getNotes,
@@ -8,7 +9,7 @@ const {
   deleteNote,
 } = require("../../controllers/noteController")
 
-router.route("/").get(getNotes).post(createNote)
+router.route("/").get(getNotes).post(authMiddleware, createNote)
 
 router.route("/:noteId").get(getSingleNote).put(updateNote).delete(deleteNote)
 

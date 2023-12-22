@@ -7,20 +7,29 @@ module.exports = {
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err))
   },
-  getUserNotes(req, res) {
+  async getUserNotes({ user = null, params }, res) {
     // const userId = req.user.id
 
     // if (req.params.userId !== userId) {
     //   return res.status(404).json({ message: "Please login to view notes!" })
     // }
-    User.findById(req.params.userId)
-      .populate("notes")
-      .then((user) =>
-        !user
-          ? res.status(404).json({ message: "No user with this ID!" })
-          : res.json(user.notes)
-      )
-      .catch((err) => res.status(500).json(err))
+
+    const founduser = await User.findOne({
+      _id: user ? user._id : params.id,
+    }).populate("notes")
+
+    if (!founduser) {
+      return res.status(404).json({ message: "No user with this ID!" })
+    }
+
+    res.json(founduser)
+
+    // .then((user) =>
+    //   !user
+    //     ? res.status(404).json({ message: "No user with this ID!" })
+    //     : res.json(user.notes)
+    // )
+    // .catch((err) => res.status(500).json(err))
   },
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
@@ -38,13 +47,15 @@ module.exports = {
         if (!res) {
           return res.status(400).json({ message: "user not found" })
         }
-        return res.isCorrectPassword(req.body.password)
-      })
-      .then((user) => {
-        if (!user) {
+        const passwordCheck = res.isCorrectPassword(req.body.password)
+
+        if (!passwordCheck) {
           return res.status(400).json({ message: "user not found" })
         }
-
+        return res
+      })
+      .then((user) => {
+        console.log("user", user)
         const token = signToken(user)
         res.json({ user, token })
       })
