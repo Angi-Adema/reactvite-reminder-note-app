@@ -54,6 +54,7 @@ https://reminder-notes-b55040377751.herokuapp.com/
 
 ## Future Development
 
+- Build a profile page so the user can login, update their password and/or email as well as the ability to delete the user account. Includes confirmation on the navbar of current user logged in.
+- During user sign up, add a password confirmation field to be sure the passwords are identical. Also, link Google so the user can opt to using their Google login to create an account.
 - Would like to make it so that different color sticky notes can be used to color code different tasks or reminders.
-- Would like to add a password confirmation field so that when the user enters a password, they also have to confirm the password entered to eliminate errors entering only one password.
 - Possibly add a calendar to the functionality to manage deadlines for some of the reminder notes.
